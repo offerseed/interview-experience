@@ -87,14 +87,18 @@
 
 | 方向 | 目录名 | 说明 |
 |------|--------|------|
-| 后端 / 服务端 | `后端服务端` | 后端开发、服务端工程 |
-| 前端 / 客户端 | `前端客户端` | 前端、iOS、Android、桌面端 |
-| 大模型 / 算法 | `大模型算法` | NLP、CV、推荐算法、大模型训练与推理 |
-| Agent 开发 | `Agent开发` | LLM Agent、RAG、工具调用 |
-| AI Infra | `AI-Infra` | GPU 加速、推理框架、分布式训练 |
-| 数据 | `数据` | 数据分析、数据工程、数据科学 |
-| 基础架构 | `基础架构` | 云原生、中间件、SRE、DBA |
-| 安全 | `安全` | 安全工程师、渗透测试、安全架构 |
+| 后端 / 服务端 | `backend` | 后端开发、服务端工程 |
+| 前端 / 客户端 | `frontend` | 前端、iOS、Android、桌面端 |
+| 大模型 / 算法 | `llm-algo` | NLP、CV、推荐算法、大模型训练与推理 |
+| Agent 开发 | `agent-dev` | LLM Agent、RAG、工具调用 |
+| AI Infra | `ai-infra` | GPU 加速、推理框架、分布式训练 |
+| 数据 | `data` | 数据分析、数据工程、数据科学 |
+| 基础架构 | `infra` | 云原生、中间件、SRE、DBA |
+| 安全 | `security` | 安全工程师、渗透测试、安全架构 |
+
+> 目录名一律用小写 ASCII（kebab-case），**不要用中文** —— 中文路径在分享链接里会被
+> 百分号编码成一长串乱码。公司目录用公司英文名小写（字节跳动 → `bytedance`、
+> 阿里巴巴 → `alibaba`）；不确定的话在 PR 描述里说明，维护者会帮你放好。
 
 ---
 
@@ -103,13 +107,13 @@
 面经 Markdown 文件放在以下路径：
 
 ```
-by-company/{公司名}/{求职方向}/{面经标题}.md
+by-company/{公司-slug}/{方向-slug}/{文件名}.md
 ```
 
 示例：
 
 ```
-by-company/阿里巴巴/Agent开发/阿里巴巴Agent开发面试.md
+by-company/tencent/llm/tencent-gaming-multimodal-algo-round1-2026-08-03.md
 ```
 
 如果你不确定路径，可以在 PR 描述中说明，维护者会帮你放到正确的位置。
