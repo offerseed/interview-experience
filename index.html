@@ -145,6 +145,36 @@ body {
   .grid { grid-template-columns: 1fr; }
   .filter-label { width: 100%; margin-bottom: 4px; }
 }
+
+/* 浏览量计数器 — 搜索框上方，科技感样式 */
+.visit-counter {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  margin-bottom: 6px;
+  padding: 9px 26px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(99,102,241,0.02));
+  border: 1px solid rgba(99,102,241,0.22);
+  border-radius: 100px;
+  font-size: 1.3rem;
+  color: var(--text-sub);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.visit-counter .visit-num {
+  font-family: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Liberation Mono', monospace;
+  font-weight: 700;
+  font-size: 1.9rem;
+  background: linear-gradient(135deg, #1d1d1f 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.06em;
+  min-width: 1.2em;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -153,6 +183,8 @@ body {
   <div class="brand">offerseed</div>
   <h1>面经合集</h1>
   <p class="tagline">互联网大厂 & AI 公司真实面试经验，按方向分类整理</p>
+
+  <div class="visit-counter">累计访问 <span class="visit-num" id="busuanzi_value_site_pv">--</span> 次</div>
 
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -163,7 +195,6 @@ body {
     <div class="stat-item"><div class="stat-num" id="stat-total">0</div><div class="stat-label">面经</div></div>
     <div class="stat-item"><div class="stat-num" id="stat-companies">0</div><div class="stat-label">公司</div></div>
     <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">方向</div></div>
-    <div class="stat-item"><div class="stat-num" id="busuanzi_value_site_pv">--</div><div class="stat-label">浏览</div></div>
   </div>
 </header>
 
