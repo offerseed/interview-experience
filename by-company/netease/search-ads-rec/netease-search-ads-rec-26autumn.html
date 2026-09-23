@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易搜广推算法-26秋招面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #3370ff;
+      --accent-light: #eff4ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<div class="header">
+  <h1>网易搜广推算法-26秋招面经</h1>
+  <p class="subtitle">网易 · 搜广推算法 · 一面 · 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：网易</span>
+    <span class="meta-chip"><strong>岗位</strong>：搜广推算法</span>
+    <span class="meta-chip"><strong>轮次</strong>：1轮技术面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2025-09</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 20px;">
+      一面时长约半小时，以 **生成式推荐项目深挖 + 多目标模型 + 深度学习基础** 为主，面试官对 RQ-VAE、PLE、DIN 等模型的原理和细节追问很深入。
+    </p>
+
+    <div class="round">
+      <div class="round-title">技术面 — 生成式推荐 + 多目标模型 + 深度学习基础</div>
+
+      <div class="qa">
+        <div class="question">Q: 讲讲生成式推荐的项目，数据集有多大 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">深挖生成式推荐项目，考察项目实现细节和数据规模。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: RQ-VAE 和 RQ-KMeans 分别是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          <strong>RQ-VAE</strong>（Residual Quantization VAE）：通过多层残差量化将连续向量逐层量化为离散 token，每层使用独立的 codebook，训练时最小化重构损失和 commitment loss。<br>
+          <strong>RQ-KMeans**：使用多层 K-Means 聚类实现残差量化，避免 VAE 的坍塌问题，训练更稳定。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么 RQ-VAE 会有码本坍塌现象？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">RQ-VAE 在训练过程中容易出现码本坍塌（codebook collapse），即部分 codebook 向量很少被使用，甚至完全不使用。原因包括：1）梯度更新不均匀，某些 codebook 的梯度被其他 codebook"抢走"；2）学习率设置不当导致部分 codebook 更新滞后；3）数据分布不平衡导致某些量化层形同虚设。解决方向包括 EMA 更新、reset 机制、更好的初始化等。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 这个项目在什么卡上面运行，运行了多久？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察项目实验条件和资源使用情况。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 微信视频号的数据集有多大？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察对数据集规模的了解。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么会出现跷跷板现象？原因是什么？怎么解决？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          跷跷板现象指多任务学习中优化一个任务时会损害另一个任务的性能。<br>
+          <strong>原因</strong>：不同任务之间梯度方向存在冲突，共享参数无法同时满足所有任务的最优方向。<br>
+          <strong>解决方法</strong>：1）动态损失加权（GradNorm、Uncertainty Weighting）；2）梯度手术（Gradient Surgery）；3）调整网络结构（PLE、CGC 分离共享和专属参数）；4）使用 ESMM 等级联结构避免直接冲突。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: PLE 相比 MMoE 的变化是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">PLE（Progressive Layered Extraction）在 MMoE 基础上做了两个关键改进：1）Expert 分为共享 Expert 和任务专属 Expert 两类，不再是所有 Expert 被所有任务共享；2）引入了更清晰的逐层提取机制，任务专属门控分别作用于共享 Expert 和专属 Expert 的输出，再逐层融合。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: PLE 的输入输出是什么？共享网络和独有网络的输入和输出是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          <strong>PLE 输入</strong>：原始特征经过 embedding 后的向量表示。<br>
+          <strong>PLE 输出</strong>：每个任务的预测结果（如 CTR、CVR 等）。<br>
+          <strong>共享网络</strong>：输入为 embedding 向量，输出为共享的语义表示，被所有任务的门控网络使用。<br>
+          <strong>独有网络</strong>：输入也是 embedding 向量（或共享网络的输出），输出为该任务专属的特征表示，仅被对应任务使用。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 过拟合现象是什么？怎么解决？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">过拟合指模型在训练集上表现好但在测试集上表现差。解决方法：增加数据、正则化（L1/L2）、Dropout、早停（Early Stopping）、数据增强、简化模型结构等。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 讲讲双塔模型的正负样本怎么选取的 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">双塔模型的正样本通常是用户有过正反馈的 item（点击、购买等）。负样本选取方式：1）全局随机采样（全局负采样）；2）In-batch 负采样（batch 内其他用户的正样本作为当前用户的负样本）；3）Hard negative 挖掘（选择模型容易误判的样本）。负样本的质量直接影响模型效果。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: In-batch 负采样为什么有效？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">In-batch 负采样在 batch 内将其他用户的正样本作为当前用户的负样本。其有效性来源于：1）当 batch size 足够大时，样本分布近似全局分布；2）引入了自然的数据增强（同一 batch 内多样化的负样本）；3）计算效率高，不需要维护全局负样本池。但需要注意样本偏差问题，可通过重要采样或增大 batch size 缓解。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 讲讲 DIN。DIN 和传统的 target attention 有什么区别？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          <strong>DIN</strong>（Deep Interest Network）：在推荐系统中，针对用户的历史行为序列，使用 Attention 机制计算每个历史行为与当前候选广告的相关性权重，加权聚合用户兴趣表示。<br>
+          <strong>与传统 Attention 的区别</strong>：DIN 的 Attention 权重计算方式是用户 embedding 和候选广告 embedding 的点积（或内积），是特定场景下的 Attention 实现；而传统 Attention（如 Transformer 中的）通常使用 Query-Key-Value 的通用框架，可以建模更复杂的依赖关系。DIN 的 Attention 更简单直接，专门服务于推荐场景的兴趣捕捉。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>网易一面时长约半小时，考察 <strong>生成式推荐 + 多目标模型 + 深度学习基础</strong></li>
+      <li>面试官对 <strong>RQ-VAE 的坍塌问题</strong>非常了解，是重点考察方向，需要深入理解原因和解决方案</li>
+      <li>RQ-VAE 和 RQ-KMeans 的区别、适用场景是搜广推面试的常见考点</li>
+      <li><strong>PLE 的结构细节</strong>（输入输出、共享/独有网络）被详细追问，需要理解到实现层面</li>
+      <li><strong>跷跷板现象</strong>的原因和解决方案是多目标面试的核心考点</li>
+      <li>DIN 和传统 Attention 的区别考察对模型细节的理解深度，不能只背定义</li>
+      <li>In-batch 负采样的有效性原理考察对训练技巧的深度理解</li>
+      <li>深度学习基础（过拟合、数据规模）穿插其中，注意平衡深度和广度</li>
+      <li>建议重点复习：RQ-VAE/RQ-KMeans、PLE/MMoE、多目标优化、DIN/Attention、负采样策略</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

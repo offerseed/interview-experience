@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滴滴出行搜广推算法-26秋招面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa; --card: #ffffff; --border: #e2e8f0;
+      --text: #1a202c; --text-secondary: #64748b;
+      --accent: #3370ff; --accent-light: #eff4ff;
+      --code-bg: #f1f5f9; --green: #16a34a; --green-light: #f0fdf4;
+      --orange: #ea580c; --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white; padding: 40px 24px; text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 6px 14px; font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 24px; margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem; margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent); display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem; font-weight: 600; color: var(--accent);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .round-title::before {
+      content: ""; display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block; font-size: 0.75rem; padding: 2px 8px;
+      border-radius: 4px; margin-left: 6px; vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .pressure-box {
+      background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 8px; padding: 16px 20px; margin-top: 12px;
+    }
+    .pressure-box .pressure-title { font-weight: 600; color: #dc2626; margin-bottom: 8px; }
+    .pressure-box p { color: var(--text-secondary); font-size: 0.92rem; margin: 4px 0; }
+    .summary {
+      background: var(--accent-light); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0; padding-left: 24px; position: relative;
+      color: var(--text-secondary); font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→"; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+    code {
+      background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center; padding: 24px; color: var(--text-secondary); font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<div class="header">
+  <h1>滴滴出行搜广推算法-26秋招面经</h1>
+  <p class="subtitle">滴滴出行 · 搜广推算法 · 3轮技术面 · 面经</p>
+</div>
+<div class="container">
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：滴滴出行</span>
+    <span class="meta-chip"><strong>岗位</strong>：搜广推算法</span>
+    <span class="meta-chip"><strong>轮次</strong>：3轮技术面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2025-10</span>
+  </div>
+  <div class="section">
+    <h2>面试流程</h2>
+    <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 20px;">
+      滴滴共 3 轮技术面，覆盖范围广：多目标模型 → 推荐系统基础 → 深度学习 → 机器学习 → 手撕算法。三面为压力面。
+    </p>
+    <div class="round">
+      <div class="round-title">一面 — 2025-10-17（1h）</div>
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 实习项目介绍。为什么要多阶段？一阶段不行吗？多阶段能够解决什么问题？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">深挖实习项目，考察多阶段设计动机：逐步优化、降低训练难度、各阶段专注不同目标。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: SFT 的效果会不会比较好？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察 SFT 在生成式推荐中的适用性。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 介绍一下 CLIP <span class="tag tag-easy">基础</span></div>
+        <div class="answer">CLIP 通过对比学习将图像和文本映射到同一语义空间，在推荐系统中用于多模态理解。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么要生成语义 ID？为什么不直接用 emb？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">语义 ID 将物品编码为离散 token 序列，天然适合序列生成模型，支持生成式推荐，更易压缩和检索。连续 embedding 不适合自回归生成。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 扩散模型和序列模型有什么区别？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          <strong>扩散模型</strong>：逐步去噪生成数据，质量高但推理慢。<br>
+          <strong>序列模型</strong>（Transformer/GRU）：自回归逐个生成 token，速度快但有曝光偏差。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 介绍一下 LN 和 BN，两者的使用场景有什么不同？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">
+          <strong>LN</strong>：对单个样本归一化，适合 RNN/Transformer，不受 batch size 影响。<br>
+          <strong>BN</strong>：对 batch 内特征归一化，适合 CNN，训练/推理行为不同。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲 ESMM 模型，提出的背景，损失函数的设计 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">ESMM 解决 CVR 训练的样本选择偏差（SSB）问题。同时建模 CTR 和 CVR，CTCVR = CTR × CVR，利用全空间曝光样本训练。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 损失函数中 CTR、CVR、CTCVR 哪个更重要？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">取决于业务目标。CVR 较稀疏难优化，CTCVR 若目标是转化则最重要。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲怎么缓解跷跷板现象 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">动态损失加权（GradNorm/Uncertainty Weighting）、梯度手术、调整网络结构（PLE/CGC）、ESMM 级联。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 详细讲讲 GradNorm <span class="tag tag-hard">核心</span></div>
+        <div class="answer">GradNorm 监控各任务梯度 L2 范数来动态调整损失权重。梯度小（学习慢）的任务增大权重，反之减小，让各任务学习速度保持平衡。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲 Dropout 的作用 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">训练时随机失活神经元防止共适应，推理时全部保留并缩放输出，起到正则化防过拟合的作用。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 知道 SVM 吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">SVM 是传统机器学习分类算法，通过最大间隔超平面分类，核函数处理非线性问题。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲交叉熵和 KL 散度 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">
+          <strong>交叉熵</strong>：H(p,q) = -Σ p(x)log q(x)，分类任务标准损失。<br>
+          <strong>KL 散度</strong>：D_KL(p||q) = Σ p(x)log(p(x)/q(x))。关系：H(p,q) = H(p) + D_KL(p||q)。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: AUC 的物理意义是什么？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">随机抽取一个正样本和一个负样本，模型给正样本打更高分的概率。等价于模型对正负样本的排序能力。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲随机森林 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">集成学习方法，构建多棵决策树综合预测。通过 bagging 和特征随机性降低方差，防止过拟合。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 详细讲讲 L1 和 L2 正则化 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          <strong>L1</strong>：λ·Σ|w_i|，产生稀疏解，有特征选择作用。<br>
+          <strong>L2</strong>：λ·Σw_i²，让权重变小但不为 0，防止过拟合。<br>
+          L1 对异常值更鲁棒，L2 处处可导计算方便。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 知道因果推理吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">因果推理研究变量间因果关系而非相关关系。在推荐系统中的应用：去偏、uplift modeling、因果嵌入。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 最长递增子序列的个数 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          例如 [1,3,5,4,7]，LIS 为 [1,3,5,7] 和 [1,3,4,7]，结果 2。<br>
+          例如 [2,2,2,2,2]，结果 5。<br><br>
+          DP：dp[i] 表示以 nums[i] 结尾的 LIS 长度，cnt[i] 表示个数。当 nums[j] &lt; nums[i] 且 dp[j]+1 &gt; dp[i] 时更新；相等则累加。O(n²)。
+        </div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">二面 — 2025-10-21（50min）</div>
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 挑选一个项目介绍（多目标） <span class="tag tag-hard">核心</span></div>
+        <div class="answer">选择多目标优化项目进行详细介绍。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲 PLE 的结构 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">PLE 在 MMoE 基础上区分共享 Expert 和任务专属 Expert，逐层提取和融合特征。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲 FiBiNET 结构 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">FiBiNET 使用 SENet 学习特征重要性权重，再通过 Bilinear Interaction 层进行特征交叉，捕获高阶交互。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 特征层面，特征筛选、特征交叉、增加新特征，这三个哪个比较重要？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">通常 特征交叉 &gt; 增加新特征 &gt; 特征筛选。好的特征交叉可自动发现隐藏交互关系。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: SSB 问题是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">SSB（Sample Selection Bias）：CVR 只在点击样本上训练，但推理时需对所有展示商品预估 CVR，导致分布不一致。ESMM 通过全空间建模解决。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 正负样本选取怎么选？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">正样本：用户有正反馈的 item。负样本：全局随机采样、In-batch 负采样、Hard negative 挖掘、基于规则筛选。负样本质量直接影响模型效果。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 对于时长的信息来说有哪些手段（log、分桶）；log、分桶有什么区别？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">Log 保留数值大小关系适合非线性模型；分桶将相似值合并降低噪声适合线性模型，但丢失精度。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 精排阶段的一些结果，能不能用在召回阶段？比如曝光未点击的物品，在召回阶段可以怎么用？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">可以。曝光未点击作为负信号用于：召回阶段负采样、构建用户负反馈序列、训练更准确的双塔模型（harder negative）、构建负向特征。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 从宏观上来说说推荐的流程 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">召回（百万→千级）→ 粗排（千→百级）→ 精排（百级排序）→ 重排（多样性/打散/业务规则）。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 觉得召回重要吗？为什么重要 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">召回是推荐系统漏斗入口，决定精排候选集上限。遗漏感兴趣的 item 精排再强也无能为力，且直接影响系统延迟。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 介绍一下 DIN。你觉得 DIN 中最重要的是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">DIN 通过 Attention 对用户历史行为加权聚合。最重要的是 Attention 机制——通过计算用户 embedding 和候选广告 embedding 的相关性动态加权，实现兴趣的"激活"而非简单平均池化。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 介绍一下 SIM <span class="tag tag-hard">核心</span></div>
+        <div class="answer">SIM（Search-based Interest Model）针对长序列，用搜索机制从长序列中找到与当前候选最相关的 k 个行为子序列再聚合，降低计算复杂度。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 是如何学习和实现 DIN、MMoE、PLE 这样的模型的？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察模型学习方式：阅读论文、复现开源实现、在自己数据集上实验调优等。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 了解因果推理吗？搜推中是怎么使用因果推理的？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">因果推理在搜推中的应用：1）去偏消除选择偏差；2）因果嵌入；3）Uplift Modeling 预估 treatment 效应；4）反事实推理。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — LeetCode 72. 编辑距离 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">经典 DP，计算将 word1 转 word2 的最少操作（插入/删除/替换）。二维 DP：dp[i][j] 表示 word1[0:i] 转 word2[0:j] 的最少操作。若字符相等则 dp[i][j]=dp[i-1][j-1]，否则 1+min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])。O(mn)。</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">三面 — 2025-10-22（50min）压力面</div>
+      <div class="pressure-box">
+        <div class="pressure-title">压力面提示</div>
+        <p>面试官持续追问"为什么不分开建模"，对回答不满意会反复深入，压力较大。</p>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么选择 MMoE？而不是每个目标单独使用一个模型来预估？<br>如果每个任务单独一个模型，最终的 AUC 会提升，那是不是分开建模效果更好？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          多任务共享底层表示的优势：1）参数效率——共享参数减少总参数量；2）数据效率——多任务数据联合训练，缓解单个任务数据不足；3）隐式数据增强——不同任务提供互补信号；4）泛化能力——共享层学到更通用的表征。<br>
+          分开建模虽然单任务 AUC 可能更高，但：1）参数量大、推理成本高；2）缺乏任务间的知识迁移；3）无法利用任务间的关联信息。工业界通常用 MMoE/PLE 在效果和效率间做平衡。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 了解滴滴的业务吗？如果让你建模一个出价的算法，你对于特征构造有什么思路？详细讲讲整个流程 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">考察对滴滴业务的理解和实际建模能力。出价算法（ bidding ）需要构造特征：用户特征（历史行为、偏好）、物品特征（品类、价格、质量）、场景特征（时间、地点、上下文）、实时特征（当前供需）。流程：特征工程 → 模型预估（pCTR/pCVR）→ 出价策略（如 MPC 最优出价）→ 在线学习和迭代。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 AUC <span class="tag tag-hard">核心</span></div>
+        <div class="answer">手写 AUC 的计算逻辑：1）将所有样本按预测分数排序；2）遍历排序后的样本，统计正样本在负样本前面的对数（或等价地：rank_sum 方法，AUC = (sum_positive_ranks - n_pos*(n_pos+1)/2) / (n_pos * n_neg)）；3）时间复杂度 O(n log n)。</div>
+      </div>
+    </div>
+  </div>
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>滴滴 <strong>3 轮技术面</strong>，覆盖面极广，从多目标 → 推荐全链路 → 深度学习基础 → 机器学习 → 手撕算法</li>
+      <li><strong>一面</strong>：项目深挖（多阶段、CLIP、语义 ID）+ 模型对比（扩散 vs 序列）+ 基础八股（LN/BN、ESMM、GradNorm、Dropout、SVM、交叉熵、AUC、随机森林、L1/L2、因果推理）+ 手撕 LIS 个数，约 20 个问题</li>
+      <li><strong>二面</strong>：推荐系统主线（PLE、FiBiNET、特征工程、SSB、负采样、DIN、SIM、因果推理）+ 手撕编辑距离</li>
+      <li><strong>三面（压力面）</strong>：持续追问"为什么不分开建模"，考察多任务学习的本质理解；手撕 AUC</li>
+      <li>多目标面试必考：跷跷板现象、GradNorm、PLE 结构、ESMM、SSB，滴滴把这几个考点全覆盖了</li>
+      <li>深度学习基础（L1/L2、Dropout、BN/LN、交叉熵/KL、AUC）也很扎实地考了一遍</li>
+      <li>手撕算法需要准备 DP（编辑距离、LIS）、概率题、排序相关</li>
+      <li>压力面要保持冷静，深入理解问题本质（如多任务共享 vs 分开建模的 trade-off）</li>
+      <li>建议提前了解滴滴的业务场景（出价算法、交易页面推荐），面试官很关注业务理解</li>
+    </ul>
+  </div>
+</div>
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+</body>
+</html>

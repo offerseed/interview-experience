@@ -19,7 +19,7 @@
 
 ## 面经模板
 
-请使用 [面经模板](./templates/面经模板.md) 撰写面经，模板结构与最终展示效果一致。
+请使用 [面经模板](templates/interview-template.md) 撰写面经，模板结构与最终展示效果一致。
 
 ### 样板参考
 
@@ -150,7 +150,7 @@ by-company/阿里巴巴/Agent开发/阿里巴巴Agent开发面试.md
 
 ### PR 检查清单
 
-- [ ] 使用了 [面经模板](./templates/面经模板.md) 格式
+- [ ] 使用了 [面经模板](templates/interview-template.md) 格式
 - [ ] 已注明求职方向（8 选 1）
 - [ ] 未泄露面试官真实姓名
 - [ ] 未包含公司内部保密信息
@@ -160,7 +160,7 @@ by-company/阿里巴巴/Agent开发/阿里巴巴Agent开发面试.md
 
 ## 有面经但不想整理？
 
-如果你有面经但没时间整理成模板格式，可以直接通过 [Issue](https://github.com/offerseed/interview-experience/issues/new?template=投稿面经.md) 投稿，维护者会协助整理。
+如果你有面经但没时间整理成模板格式，可以直接通过 [Issue](https://github.com/offerseed/interview-experience/issues/new?template=submit-interview.md) 投稿，维护者会协助整理。
 
 ---
 

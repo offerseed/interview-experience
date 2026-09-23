@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蔚来 端测工程部AI岗 一面面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #00bca5;
+      --accent-light: #e0fff9;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #00bca5 0%, #009376 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<!-- 内容由 generate_interview.py 动态填充 -->
+<div class="header">
+  <h1>蔚来 端测工程部AI岗 一面面经</h1>
+  <p class="subtitle">蔚来 · offerseed 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：蔚来</span>
+    <span class="meta-chip"><strong>岗位</strong>：端测工程部 AI 岗（Agent 开发）</span>
+    <span class="meta-chip"><strong>轮次</strong>：一面</span>
+    <span class="meta-chip"><strong>结果</strong>：未匹配</span>
+    <span class="meta-chip"><strong>日期</strong>：2026-04</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <div class="round">
+      <div class="round-title">一面 — 工程基础与岗位匹配度</div>
+      <div class="qa">
+        <div class="question">Q: 请先做一个简单的自我介绍。 <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">本硕背景，研究方向围绕 AI 与大模型。有两段实习经历。期待加入蔚来。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 到上海安亭实习，通勤是否有困难？能实习多久，每周出勤几天？ <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">通勤没有问题，之前实习的通勤距离也比较长。每周可以出勤四天，实习六个月以上。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 简历上写 Python 使用很精通，能解释一下 GIL 是什么吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">不太了解 Python 的 GIL。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 学过 C++ 吗？是否用 C++ 搭建过项目或工程？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">对 C++ 有一定了解。第一段实习主要围绕 C++ 和 CUDA 展开，工作以调试 bug 为主，没有用 C++ 搭建过完整项目。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Python 装饰器的原理是什么？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">装饰器用于装饰函数，知道函数套函数的写法和语法糖的写法，但对具体原理不够熟练。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么叫语法糖？它有什么作用？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">主要作用是让代码编写更加便捷。例如使用装饰器时可以直接在函数前写装饰器，不必额外编写复杂的调用代码。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 一个分支要合并到主线，出现文件冲突时，你的解决流程是什么？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">平时会借助 AI 查询对应操作，确认命令语法后按步骤执行，没有系统梳理过独立解决合并冲突的完整流程。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 了解 Git worktree 吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">听到后确认是否指工作树，但对具体概念和用法不太了解。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 知道 Git cherry-pick 吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">不了解。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 平时使用过 Vim 吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">没有使用过。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 把一个计算任务交给 GPU，再拿到结果，完整的 CUDA 计算流程是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">对完整链路不够熟悉。理解是先在 CUDA 算子中处理显存、线程等基础工作，再进行上层封装，最后通过 Python 调用。无法清晰说明任务如何输入、拆分、执行以及结果如何返回。面试官反馈：用 C++ 编写 CUDA 时这属于基础流程。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 是否系统学过数据结构与算法？了解哈希表吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">自学过数据结构与算法，但没有完全学完。对哈希表只了解基本概念，不够熟练。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 平时使用哪些在线编程产品？ <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">会使用 Codex 搭建代码框架，再在此基础上完善工作。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 学过操作系统相关知识吗？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">没有学过操作系统相关知识。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 对岗位的工程属性是否了解？是否愿意考虑其他算法组？ <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">面试官介绍：团队是工程部门，主要做前后端、引擎等传统开发，也涉及模型训练部署相关工程、训练框架优化和千卡集群调度。面试官反馈：当前背景与岗位需求不太匹配，基础问题回答不够扎实，愿意推荐至其他算法组。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 反问——我是通过什么渠道进入这次面试的？ <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">面试官回答：通过 BOSS 直聘获取简历并主动邀约。认可学历和背景，愿意向其他算法组推荐并提供面试机会。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>先核实岗位职责：虽归类为 Agent 开发，本次实际考察集中在工程基础，没有涉及 Agent 架构或算法推导</li>
+      <li>简历中的精通、熟练需要能够支撑：面试官直接围绕 Python、Git、CUDA 的熟练程度追问</li>
+      <li>补齐 Python 与 Git 基础：重点复习 GIL、装饰器、语法糖；练习分支合并、冲突处理、worktree 与 cherry-pick</li>
+      <li>从局部 CUDA 调试补到完整流程：通过最小 C++ CUDA 示例梳理显存分配、数据传输、kernel 启动、同步、结果取回</li>
+      <li>系统学习计算机基础：补齐数据结构与算法、哈希表和操作系统知识</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

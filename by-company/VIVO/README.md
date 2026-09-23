@@ -29,7 +29,7 @@ VIVO 校招/实习面试通常包含以下环节：
 
 | 日期 | 岗位 | 轮次 | 链接 |
 | :--- | :--- | :--- | :--- |
-| 2025-09-24 | 深度学习算法工程师（互联网方向） | 一面/二面/HR面 | [查看](./search-ads-rec/vivo-search-ads-rec-26autumn.html) |
+| 2025-09-24 | 深度学习算法工程师（互联网方向） | 一面/二面/HR面 | [查看](search-ads-rec/vivo-search-ads-rec-26autumn.html) |
 
 ## Agent开发
 
@@ -78,5 +78,5 @@ VIVO 校招/实习面试通常包含以下环节：
 
 ## 面试经验
 
-> 📌 欢迎投稿你的 VIVO 面经！请使用 [面经模板](../../templates/面经模板.md) 提交 PR。
+> 📌 欢迎投稿你的 VIVO 面经！请使用 [面经模板](../../templates/interview-template.md) 提交 PR。
 投稿时请在面经中注明岗位方向，方便归类到对应分类。

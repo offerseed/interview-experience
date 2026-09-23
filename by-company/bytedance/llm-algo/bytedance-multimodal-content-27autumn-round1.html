@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字节跳动-多模态内容理解-27秋招一面 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #3370ff;
+      --accent-light: #eff4ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+<!-- 内容由 generate_interview.py 动态填充 -->
+<div class="header">
+  <h1>字节跳动-多模态内容理解-27秋招一面</h1>
+  <p class="subtitle">字节跳动 · offerseed 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：字节跳动</span>
+    <span class="meta-chip"><strong>岗位</strong>：多模态内容理解</span>
+    <span class="meta-chip"><strong>轮次</strong>：一面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2026-09</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <div class="round">
+      <div class="round-title">FLUX 模型结构</div>
+      <div class="qa">
+        <div class="question">Q: FLUX 整体模型架构是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FLUX 和传统 U-Net Diffusion 的主要区别是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FLUX 中 Transformer 的输入有哪些？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 图像 latent 和文本条件是如何进入 Transformer 的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FLUX 中的位置编码是怎么做的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: RoPE 在 FLUX 中如何使用？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 图像 token 的二维位置信息如何编码？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FLUX 的位置编码维度是如何划分的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 不同坐标轴分别占多少维度？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么要对不同维度进行这样的划分？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 多维 RoPE 和标准一维 RoPE 有什么区别？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">视频 VAE 与图像 VAE</div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 和普通图像 VAE 有什么区别？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 图像 VAE 的 Encoder / Decoder 整体流程是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 为什么不能简单地逐帧使用图像 VAE？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 如何处理时间维度？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 在空间和时间维度上分别如何压缩？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Temporal Compression 的作用是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 如何保证相邻帧之间的时序一致性？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: WAN 使用的 VAE 和普通图像生成模型中的 VAE 有什么区别？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 视频 VAE 在显存、计算量和重建质量方面有哪些挑战？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">FLUX 超参数 / Flow Shift</div>
+      <div class="qa">
+        <div class="question">Q: FLUX 训练和推理过程中有哪些重要超参数？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Flow Matching 中 timestep / noise level 是如何定义的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 什么是 Flow Shift？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Flow Shift 修改的是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么需要对 timestep / sigma 分布进行 shift？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Flow Shift 对高分辨率图像生成有什么影响？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: shift 变大或者变小时，采样过程会发生什么变化？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Flow Matching 和传统 DDPM 的 timestep / noise schedule 有什么区别？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">LLM 的损失函数</div>
+      <div class="qa">
+        <div class="question">Q: 大语言模型训练使用什么 Loss？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Next Token Prediction 是怎么训练的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Cross Entropy Loss 如何计算？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 模型输出的 logits 是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: logits 如何转换成 token probability？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Softmax 在这里起什么作用？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Ground Truth token 如何参与 Loss 计算？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么语言模型训练可以看成多分类问题？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Padding token 是否参与 Loss？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Attention Mask 和 Loss Mask 有什么区别？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 一个 sequence 的 Loss 最终如何聚合？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">LLM 完整数据流</div>
+      <div class="qa">
+        <div class="question">Q: 要求从输入文本开始，完整描述一次 LLM Forward：Text → Tokenizer → Token IDs → Token Embedding → Position Encoding → Transformer Blocks → Self-Attention → FFN → Final Norm → LM Head → Logits → Softmax / Sampling → Next Token</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Tokenizer 输出什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Token ID 如何变成 embedding？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Position Encoding 在哪里加入？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 一个 Transformer Block 内部的数据流是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Q、K、V 如何产生？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Attention 输出之后经过什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FFN 的作用是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 最后一层 hidden states 如何变成 vocabulary logits？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: LM Head 的维度是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 训练阶段和推理阶段的数据流有什么区别？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 推理时为什么需要 KV Cache？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">MMDiT 单流 / 双流结构</div>
+      <div class="qa">
+        <div class="question">Q: MMDiT 是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么多模态 Diffusion Transformer 要区分图像和文本 stream？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 双流结构是怎么计算的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Text Stream 和 Image Stream 分别维护什么 hidden states？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 两个 stream 如何进行信息交互？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 什么阶段从双流进入单流？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 单流结构是怎么计算的？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 单流阶段文本 token 和图像 token 如何组织？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 单流和双流各自有什么优势？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么不从模型第一层开始就直接把所有 token concat 到一起？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: FLUX 中 Single-Stream Block 和 Double-Stream Block 分别承担什么作用？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">Agent Skill 加载流程</div>
+      <div class="qa">
+        <div class="question">Q: Agent 中的 Skill 是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 一个 Skill 从注册到真正被 Agent 使用，完整流程是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Agent 如何知道当前有哪些 Skill 可以使用？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 的 metadata 包含哪些信息？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 用户输入之后，Agent 如何判断应该加载哪个 Skill？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 是全部提前加载，还是按需加载？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 加载之后如何进入 Agent 的上下文？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 和 Tool / Function Calling 有什么区别？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如果 Skill 数量很多，如何避免占用过多 context window？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如何进行 Skill 的检索和路由？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">Skill 生命周期</div>
+      <div class="qa">
+        <div class="question">Q: 一个 Agent Skill 的完整生命周期是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 在什么时候注册？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 什么时候加载？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 什么时候真正执行？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 使用结束之后会不会立即卸载？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 什么情况下应该卸载 Skill？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 的生命周期和一次 Agent Session 的生命周期是什么关系？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 多轮对话中 Skill 是否需要重复加载？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如何管理 Skill 的状态？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Skill 数量非常多时，如何进行动态加载和卸载？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如何避免 Skill 长时间驻留导致上下文膨胀？</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">手撕 Cross-Attention</div>
+      <div class="qa">
+        <div class="question">Q: 要求现场写 Cross-Attention 的完整计算过程：给定两个不同模态 / 序列 X_q 和 X_kv，先计算 Q = X_q · W_Q、K = X_kv · W_K、V = X_kv · W_V，再计算 CrossAttention(Q, K, V) = Softmax(QK^T / √d_k) · V</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Cross-Attention 和 Self-Attention 最核心的区别是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Q 来自哪里？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: K、V 来自哪里？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 为什么 K 和 V 通常来自同一个条件序列？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如果 Query 长度为 N，KV 长度为 M，Attention Matrix 的 shape 是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: QK^T 的维度是什么？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 最终输出的 sequence length 跟 Q 还是 KV 一致？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Multi-Head Cross-Attention 如何计算？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Cross-Attention 如何实现不同模态之间的信息交互？</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 在文本控制图像生成中，图像和文本分别对应 Q / K / V 中的什么角色？</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>本面经仅收录面试问题，未提供回答记录</li>
+      <li>一面整体考察方向：FLUX → Transformer / RoPE → 多维位置编码 → Flow Matching / Flow Shift → MMDiT → 图像 / 视频 VAE → LLM 完整 Forward → Cross-Attention → Agent Skill</li>
+      <li>整体偏向考察大模型完整技术栈是否真正理解到底层数据流。FLUX 相关不只是问「用过没有」，而是会继续追问到模型结构、位置编码、维度划分、MMDiT 单双流以及 Flow Shift；LLM 也不只是问 Transformer，而是要求能从 Tokenizer 一直讲到 LM Head、Logits 和 Loss；Agent 部分重点考察 Skill 的动态加载、上下文管理以及完整生命周期</li>
+      <li>典型考察套路：简历上写了这个技术 → 解释整体架构 → 继续追问内部数据流 → 继续追问公式和具体实现细节</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

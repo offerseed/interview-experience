@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字节跳动搜广推算法-26秋招面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #3370ff;
+      --accent-light: #eff4ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<div class="header">
+  <h1>字节跳动搜广推算法-26秋招面经</h1>
+  <p class="subtitle">字节跳动 · 抖音-中国区广告 · 搜广推算法 · 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：字节跳动</span>
+    <span class="meta-chip"><strong>团队</strong>：抖音-中国区广告</span>
+    <span class="meta-chip"><strong>岗位</strong>：搜广推算法</span>
+    <span class="meta-chip"><strong>轮次</strong>：3轮技术面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2025-09</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <div class="round">
+      <div class="round-title">一面 — 2025-09-16</div>
+      <div class="qa">
+        <div class="question">Q: 深挖实习的项目和多目标优化项目 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试官要求详细介绍实习期间的项目细节，以及多目标优化项目的实现方式和效果。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: vLLM 部署大模型的时候有没有遇到什么问题？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">考察大模型推理部署（vLLM）的实战经验，包括可能的性能瓶颈、显存管理、推理加速等问题。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 梯度消失和梯度爆炸的改进措施 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">深度学习基础问题，涉及梯度消失/爆炸的原因及常见解决方案（如梯度裁剪、残差连接、合适的初始化、LayerNorm 等）。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 五折交叉验证是怎么实现的？什么情况下需要五折交叉验证？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">交叉验证的基本原理和适用场景，五折交叉验证将数据分为5份轮流作为验证集，适合数据量不太大的情况。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 讲讲 Dropout 技术 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">面试官评价回答"有点抽象"，需要更加具体地解释 Dropout 的原理（随机失活）、在训练/推理时的行为差异、以及为什么能起到正则化作用。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 多目标任务是怎么做优化改进的？（模型？数据？） <span class="tag tag-hard">核心</span></div>
+        <div class="answer">多任务学习的优化方向，可以从模型层面（共享/独立参数设计、损失加权、梯度调节）和数据层面（数据分布、样本平衡）等角度展开。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 多了解前沿的技术，如 HSTU <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察对推荐系统前沿技术的了解，HSTU（Hierarchical Sequential Transduction Unit）是字节提出的序列推荐模型。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 在排序数据中查找元素的第一个位置（LeetCode 34）及两种变种 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">二分查找变种：在排序数组中查找目标值的第一个出现位置。两种变种可能涉及查找最后一个位置、查找左右边界等。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 甲乙轮流抛硬币，正面为 p，反面为 (1-p)，求甲胜利的概率 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">概率题：甲先抛，甲乙轮流抛硬币，正面即获胜。求甲最终获胜的概率。答案为 p / (1 - (1-p)(1-p))。</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">二面 — 2025-09-18</div>
+      <div class="qa">
+        <div class="question">Q: 自我介绍（5min） <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 实习的项目（5min） <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">深挖实习项目经历。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 生成式推荐项目，为什么指标这么低？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">考察对推荐系统评估指标的理解，以及对生成式推荐方法性能问题的分析和改进思路。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 写一个 Encoder，以及每个步骤的时间复杂度 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">实现 Transformer 中的 Encoder 结构（包括 Multi-Head Attention、FFN、LayerNorm、残差连接等），并分析每一步的时间复杂度。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 二分交叉熵 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">实现二分类交叉熵损失函数（Binary Cross Entropy Loss），注意数值稳定性。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 一个数组拆成前后两部分，求前后两部分的最小方差和 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">前缀和/滑动窗口思路：遍历每个分割点，计算前后两部分的方差，取最小值。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — n 个样本中随机有放回地抽 n 个样本，问某个样本没有被抽到的概率 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">概率题：答案为 (1 - 1/n)^n，当 n → ∞ 时收敛到 1/e ≈ 0.368。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如果一个数组长度为 n，那么建堆的时间复杂度是多少？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">建堆（Heapify）的时间复杂度为 O(n)，而非直觉上的 O(n log n)。因为堆的构建是自底向上进行的，大部分节点高度很低。</div>
+      </div>
+    </div>
+    <div class="round">
+      <div class="round-title">三面 — 2025-09-29</div>
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 再介绍一下实习的项目 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">再次深挖实习项目经历。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 只允许调换一对数字，让整个数字最大 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">例如 4312 → 4321，52341 → 54321，51351 → 55311，62453 → 65423。暴力排序比较法 O(n log n)，最优解法用单调递增栈可做到 O(n)。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 手撕 — 数组包含 1、2、3 三种元素，求包含这三种不同元素的子数组个数 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">例如 23122 中有 [2,3,1]、[2,3,1,2]、[2,3,1,2,2]、[3,1,2]、[3,1,2,2]。暴力法 O(n²)，最优解法用滑动窗口可做到 O(n)。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>三轮面试整体考察 <strong>算法 + 机器学习 + 推荐系统</strong> 的深度和广度</li>
+      <li>一面侧重基础概念（梯度消失/爆炸、Dropout、交叉验证）和项目深挖，手撕部分以二分查找和概率题为主</li>
+      <li>二面开始深入模型实现（Encoder、交叉熵）和推荐系统指标分析，手撕涉及数组操作和概率题</li>
+      <li>三面主要是项目深挖 + 两道手撕算法题（数组调换、滑动窗口），对代码能力和优化思维要求较高</li>
+      <li>建议复习：Transformer 架构（尤其是 Encoder 部分）、排序算法与二分查找、概率论基础、推荐系统评估指标、多目标优化方法</li>
+      <li>手撕代码不仅要写对，还要能够分析时间复杂度和优化思路（如建堆 O(n)、滑动窗口 O(n) 等）</li>
+      <li>实习项目的细节和数据要非常熟悉，面试官会针对性地追问实现细节和指标表现</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

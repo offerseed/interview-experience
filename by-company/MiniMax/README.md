@@ -44,4 +44,4 @@
 
 ## 面试经验
 
-> 📌 欢迎投稿你的 MiniMax 面经！请使用 [面经模板](../../templates/面经模板.md) 提交 PR。
+> 📌 欢迎投稿你的 MiniMax 面经！请使用 [面经模板](../../templates/interview-template.md) 提交 PR。

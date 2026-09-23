@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>得物搜广推算法-26秋招面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #3370ff;
+      --accent-light: #eff4ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .advice-box {
+      background: #fff8e1;
+      border: 1px solid #ffe0b2;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 12px;
+    }
+    .advice-box .advice-title {
+      font-weight: 600;
+      color: #e65100;
+      margin-bottom: 8px;
+    }
+    .advice-box p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin: 4px 0;
+    }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<div class="header">
+  <h1>得物搜广推算法-26秋招面经</h1>
+  <p class="subtitle">得物 · 搜广推算法 · 3轮技术面 · 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：得物</span>
+    <span class="meta-chip"><strong>岗位</strong>：搜广推算法</span>
+    <span class="meta-chip"><strong>轮次</strong>：3轮技术面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2025-09 ~ 2025-10</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+
+    <div class="round">
+      <div class="round-title">一面 — 2025-09-20（30min）</div>
+
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 讲讲推荐系统的整个链路过程 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">考察推荐系统全链路理解，包括召回（多路召回 → 粗排）、排序（精排 → 重排）、以及各阶段常用的模型和技术。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么做这三个项目？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试官追问项目选型的动机和思路，考察对项目整体规划的理解。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 召回层还知道哪些方法？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察推荐系统召回阶段的常用方法，如 CF（协同过滤）、MF（矩阵分解）、双塔模型、Faiss 向量检索、多路召回等。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 重排一般会用什么技巧？（面试者答了按类别去重排，面试官说这个比较硬，还有一些软策略） <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          硬策略：按类别去重、打散规则。<br>
+          软策略：DPP（Determinantal Point Process）多样性优化、Listwise 重排模型（如 Transformer-based）、RL-based 重排、规则加权等。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 多目标任务中的极化现象怎么解决？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">极化现象指多任务学习中某些任务表现很好而另一些任务表现很差。解决方法：1）动态损失加权（GradNorm、Uncertainty Weighting）；2）梯度手术（Gradient Surgery）；3）调整网络结构（PLE、CGC）；4）数据层面的样本平衡。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 多目标任务中的跷跷板现象怎么解决？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">跷跷板现象指优化一个任务时会损害另一个任务的性能。解决方法与极化现象类似：动态权重调整、梯度冲突缓解、更好的共享机制设计。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 生成式推荐中 beam search + 前缀树解码，在实际场景中应用有什么难点？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试者认为生成式推荐更适合用于召回阶段。难点包括：解码效率、生成长度控制、多样性保证、冷启动问题等。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么生成式推荐只能用于召回？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">生成式推荐通过自回归方式生成 item 序列，天然适合召回阶段的候选生成，但在精排阶段需要精确的评分能力，生成式方法的排序精度通常不如传统排序模型。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 对 FAISS 库的了解 <span class="tag tag-easy">基础</span></div>
+        <div class="answer">FAISS（Facebook AI Similarity Search）是 Meta 开源的向量相似度搜索库，支持高效的 ANN（Approximate Nearest Neighbor）检索，常用于推荐系统的召回阶段。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 再次问，为什么做这三个项目？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试官重复追问项目选型动机，说明非常关注项目的逻辑性和完整性。</div>
+      </div>
+    </div>
+
+    <div class="advice-box">
+      <div class="advice-title">面试官建议</div>
+      <p>能够按照推荐链路做项目，在应届生中还是有竞争力的，但就是缺乏实际实习的经历。</p>
+      <p>建议关注业务：交易页面的推荐。</p>
+    </div>
+
+    <div class="round">
+      <div class="round-title">二面 — 2025-10-12（20min）</div>
+
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 简单问了一下公司实习的项目，不超过 3min <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">简要了解实习经历，面试官提到如果用 SFT（Supervised Fine-Tuning）的话，效果是不是会更好？</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 这三个项目是自己做的，还是实习，还是比赛？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">考察项目来源和真实性。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 讲讲生成式推荐的项目（面试者自己讲了一遍，没有深问） <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试者自主介绍生成式推荐项目的实现细节。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 手撕 — LeetCode 34. 在排序数组中查找元素的第一个和最后一个位置 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试者只找到了第一个位置，面试官要求时间复杂度优于 O(n)。面试者主动写了 map 存位置信息，又主动写了双指针查找第一个位置。</div>
+      </div>
+    </div>
+
+    <div class="round">
+      <div class="round-title">三面 — 2025-10-18（20min）</div>
+
+      <div class="qa">
+        <div class="question">Q: 自我介绍 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">标准自我介绍环节。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 介绍实习项目 <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">再次深挖实习项目经历。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 什么是 RQ-VAE，RQ-VAE 的结构是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试者介绍了整体的结构和损失函数设计。RQ-VAE（Residual Quantization VAE）通过多层残差量化将连续向量逐层量化为离散 token，每层使用独立的 codebook，损失函数包括重构损失和 commitment loss。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 跷跷板现象是什么？怎么解决？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">同上，跷跷板现象指多任务学习中优化一个任务会损害另一个任务。解决方法包括动态损失加权、梯度手术、更好的共享结构设计等。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 问我是想做搜推广还是大模型（面试者回答搜推广） <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">考察职业方向选择。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 未来的职业规划是怎么样的？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">考察职业规划清晰度和长期目标。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 觉得自己的优势是什么？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">面试者回答学习能力比较强，学习比较快。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 觉得自己比较满意的是什么？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">面试者从研究生整个学习过程上回答。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 觉得自己有没有什么遗憾的？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">面试者回答没有实习经历，这点比较遗憾。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么同样的网络结构，同样的输入，每次运行的结果都可能不同？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">
+          面试官提示从浮点数的角度考虑。<br>
+          原因：1）GPU 上浮点运算的并行顺序不确定（如加法交换律在浮点数下不严格成立）；2）CUDA kernel 的执行顺序可能因调度不同而变化；3）随机初始化 seed 的影响。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 反问：问了搜推广的业务都做了哪些 <span class="tag tag-hr">反问</span></div>
+        <div class="answer">面试者向面试官了解得物搜推广业务的具体情况。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>得物共 <strong>3 轮技术面</strong>，整体节奏较快，每轮约 20-30 分钟</li>
+      <li>面试围绕 <strong>推荐系统全链路 → 多目标优化 → 生成式推荐 → RQ-VAE</strong> 展开</li>
+      <li>多目标优化的 <strong>极化现象</strong>和<strong>跷跷板现象</strong>是得物的考察重点，两面都问了，需要深入理解原因和解决方案</li>
+      <li>面试官对重排策略有独到见解，认为"按类别去重排"太硬，需要了解 DPP、Listwise 等软策略</li>
+      <li>生成式推荐的适用场景（召回 vs 精排）是重要考点，要理解为什么生成式方法更适合召回</li>
+      <li>RQ-VAE 的结构和损失函数设计在三面被深挖，需要熟练掌握残差量化的原理</li>
+      <li>浮点数运算的不确定性（非确定性）是一个有趣的底层问题，从 CUDA 并行和浮点数精度角度理解</li>
+      <li>面试官评价「按照推荐链路做项目在应届生中还是有竞争力的，但缺乏实习经历」，建议尽早积累实习经验</li>
+      <li>三面偏 HR 面，问了很多职业规划类问题，需要提前准备</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

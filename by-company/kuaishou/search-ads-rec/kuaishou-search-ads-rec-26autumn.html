@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快手搜广推算法-26秋招面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #3370ff;
+      --accent-light: #eff4ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #3370ff 0%, #245bdb 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+      .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+
+<div class="header">
+  <h1>快手搜广推算法-26秋招面经</h1>
+  <p class="subtitle">快手 · 搜广推算法 · 一面 · 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：快手</span>
+    <span class="meta-chip"><strong>岗位</strong>：搜广推算法</span>
+    <span class="meta-chip"><strong>轮次</strong>：1轮技术面</span>
+    <span class="meta-chip"><strong>结果</strong>：—</span>
+    <span class="meta-chip"><strong>日期</strong>：2025-09</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <div class="round">
+      <div class="round-title">技术面 — 项目深挖 + 基础知识 + 手撕算法</div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么导师不让实习？ <span class="tag tag-hr">HR/开场</span></div>
+        <div class="answer">开场问题，询问无法实习的原因，考察求职动机和实际情况。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 热门、分类、高分三个任务是互斥的吗？有没有做过测试，看热门和高分之间的 gap？<br>（因为有些热门电影和高分电影有很大的重叠） <span class="tag tag-hard">核心</span></div>
+        <div class="answer">面试官质疑任务设计的合理性，考察对多目标/多任务推荐中任务之间关系的理解，以及是否做过实验验证任务间的重叠和差异。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: DeepFM 中的 FM 和人工特征交叉有什么区别？<br>DeepFM 在工业界很少用，因为特征交叉的数量太多了，应该怎么处理？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          ① FM（Factorization Machine）通过隐向量学习二阶特征交叉，自动发现特征组合；人工特征交叉需要手动设计，依赖领域知识。<br>
+          ② DeepFM 等模型因为特征交叉产生的特征维度爆炸问题在工业界确实存在，通常通过特征选择、低维 embedding、正则化等方法处理。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 几个数据集的大小是多少？ <span class="tag tag-easy">基础</span></div>
+        <div class="answer">考察对项目数据规模的了解程度。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: GradNorm 的原理是什么？<br>工业界一般不这么用，因为这个 GradNorm 比较 trick <span class="tag tag-hard">核心</span></div>
+        <div class="answer">GradNorm 是一种多任务学习的动态损失加权方法，通过归一化各任务梯度的 L2 范数来自动调整损失权重，使各任务的学习速度保持平衡。但因其调参较多、稳定性差，工业界使用较少。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么使用 RQ-KMeans？<br>因为 RQ-VAE 会疯狂坍塌，坍塌现象很严重，所以只能使用 RQ-KMeans 来做。可以看看其他生成 sid 的方式。 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">
+          RQ-VAE 在训练过程中容易出现坍塌（collapse）问题，即所有输入都被映射到少数几个 codebook 向量，失去了量化能力。<br>
+          替代方案：第一层直接按照类别分类，之后再使用均衡 KMeans（balanced KMeans）进行进一步聚类。
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 为什么使用 CLIP 来实现多模态？选择 CLIP 的原因？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">CLIP 在图文语义空间对齐方面有优势，可以将文本和图像映射到同一空间，便于多模态表示学习和跨模态检索。</div>
+      </div>
+    </div>
+
+    <div class="round">
+      <div class="round-title">技术面 — 手撕算法</div>
+
+      <div class="qa">
+        <div class="question">Q: 手撕 — LeetCode 46. 全排列 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">给定数组 [1,2,3]，求所有全排列。共 3! = 6 种。典型回溯/DFS 题目。</div>
+      </div>
+
+      <div class="qa">
+        <div class="question">Q: 手撕 — LeetCode 56. 合并区间 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">给定一组区间，合并所有重叠的区间。先按起点排序，然后遍历合并相邻重叠区间。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li>这轮面试时长约半小时，节奏比较快，考察 <strong>推荐系统 + 深度学习 + 手撕算法</strong></li>
+      <li>面试官对项目的深度和细节要求很高，不仅仅是"做过"而是要理解 <strong>为什么选择某个方案</strong> 以及 <strong>有没有验证过</strong></li>
+      <li>面试官直接指出 RQ-VAE 坍塌问题，说明快手的面试官对生成式推荐的技术细节非常了解</li>
+      <li>DeepFM 已经被认为比较老旧，面试官直接说"工业界很少用"，需要了解现代推荐模型的演进（如 Wide & Deep → DeepFM → DCN → xDeepFM → DIN 等）</li>
+      <li>GradNorm 被评价为"比较 trick"，建议理解原理但不要作为主要优化手段来宣传</li>
+      <li><strong>RQ-VAE 和 RQ-KMeans 已经成为搜广推面试的八股考点</strong>，需要深入理解两者的原理、区别、以及 RQ-VAE 坍塌的解决方案</li>
+      <li>手撕只考了两道经典题（全排列 + 合并区间），难度适中但考察代码规范</li>
+      <li><strong>建议：把项目深度拉深</strong>，多问问在实习的同学做的工作细节，比如生成式推荐中 sid 生成的具体技巧和调优过程</li>
+      <li>可以多尝试不同的 sid 生成方式，比较 RQ-VAE、RQ-KMeans、分层聚类等方案的优劣</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

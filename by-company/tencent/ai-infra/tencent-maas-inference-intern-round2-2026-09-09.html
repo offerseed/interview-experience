@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>腾讯 MaaS推理引擎实习生 二面面经 · 面经</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1a202c;
+      --text-secondary: #64748b;
+      --accent: #00a4ff;
+      --accent-light: #e6f7ff;
+      --code-bg: #f1f5f9;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #00a4ff 0%, #0086d6 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    .header .subtitle { font-size: 0.95rem; opacity: 0.85; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 48px; }
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .meta-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .meta-chip strong { color: var(--text); }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .round { margin-bottom: 24px; }
+    .round:last-child { margin-bottom: 0; }
+    .round-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .round-title::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .qa { margin-left: 16px; margin-bottom: 14px; }
+    .qa .question { font-weight: 600; margin-bottom: 4px; }
+    .qa .answer { color: var(--text-secondary); font-size: 0.92rem; }
+    .qa .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-hr { background: var(--orange-light); color: var(--orange); }
+    .tag-easy { background: var(--green-light); color: var(--green); }
+    .tag-hard { background: var(--accent-light); color: var(--accent); }
+    .summary {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .summary h2 { color: var(--accent); border-bottom-color: var(--accent); }
+    .summary ul { list-style: none; padding: 0; }
+    .summary li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .summary li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-btn:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+<a class="back-btn" href="https://offerseed.github.io/interview-experience/">&larr; 返回面经合集</a>
+<!-- 内容由 generate_interview.py 动态填充 -->
+<div class="header">
+  <h1>腾讯 MaaS推理引擎实习生 二面面经</h1>
+  <p class="subtitle">腾讯 · offerseed 面经</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <span class="meta-chip"><strong>公司</strong>：腾讯</span>
+    <span class="meta-chip"><strong>岗位</strong>：MaaS 推理引擎实习生</span>
+    <span class="meta-chip"><strong>轮次</strong>：二面</span>
+    <span class="meta-chip"><strong>结果</strong>：挂</span>
+    <span class="meta-chip"><strong>日期</strong>：2026-09</span>
+  </div>
+
+  <div class="section">
+    <h2>面试流程</h2>
+    <div class="round">
+      <div class="round-title">二面 — 推理框架项目深挖与并行策略（时长未记录）</div>
+      <div class="qa">
+        <div class="question">Q: 请做一下自我介绍。 <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">（未提供回答记录）</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 具体讲一讲事情和产出。 <span class="tag tag-hard">核心</span></div>
+        <div class="answer">围绕 vllm 和 sglang 两大模块开展模型与特性支持、算子开发和性能优化，适配千问 3.5、Kimi 等混合注意力模型，修复 prefill-chunk、prefill 等特性问题，并独立负责 MOE 的 all-to-all 通信特性。<br>后期参与 Qwen 适配，负责 qwen3.5 框架适配和 MTP 支持；根据客户工况抓取算子输入输出、分析瓶颈并向算子团队提出优化需求，紧急场景下也会先完成初步实现。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: K3（Kimi 系列）模型的结构有什么特点？适配时需要处理哪些问题？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">K3 的 Attention 基于千问的 Gated Data-Dependent Attention，在此基础上增加可调节线性 Attention 的相关参数。由于 K2.5 已有 KD 相关实现，整体迁移较顺利。<br>主要挑战来自模型参数规模较大，量化适配和模型部署会带来显存、算力及工程落地方面的压力。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: Kimi 会采用怎样的并行策略？如果采用 PD 分离呢？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">目前主要支持对称的 PD 分离，例如 4P4D 配置；框架负责实现对应功能特性，硬件侧通常使用 32 卡完成 Kimi 的部署和量化。即使不采用 PD 分离，也会结合 TP、DP 等策略。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: TP 和 DP 哪种并行策略更优？如何选择？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">需要根据客户业务指标组合调试。TP 规模增大通常有利于推理性能和 prefill 速度，但显存冗余也会增加，开启投机解码时整体效果可能更好；DP 规模增大有利于提升整体吞吐量。<br>不存在绝对最优配置，应结合延迟、吞吐、显存和投机解码等要求评估多套 TP/DP 组合。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 了解 Context Parallel（CP）吗？K3 能否使用 CP？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">CP 是上下文并行，与 TP、DP 属于正交的切分方式，主要用于长文本场景。K3 理论上可以支持 CP，目前仍在迭代适配；此前 Review 过相关代码，也修复过 DeepSeek MLA 模型的 CP bug。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: KDA 层和 MLA 层可以同时使用 CP 吗？CP 的实现方式有哪些？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">认为可以同时使用。在寒武实现中，会先切分 Context 并分发到各卡，在进入 Attention 计算前再重组，属于伪 CP 实现。CP 还包括 PCP、DCP 等形式，当前部分细节仍不完善，整体属于 VCP（虚拟上下文并行）方案。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: CP 和 SP 一般有什么区别？开启 TP 时为什么经常搭配 SP？TP 的通信流程、横向切分和通信次数是什么？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">CP 与 SP 的概念容易混淆，对两者区别和 TP 底层通信细节掌握得不够深入；团队已实现相关模块，未直接参与底层实现。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 回到实习经历，实际落地做了哪些工作？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">主要负责 bug 修复、新特性支持、模型适配，以及精度和性能测试分析；重点完成千问 3.5 的 MTP 适配与支持，也参与千问、Kimi 等模型的测试。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 千问 3.5 的 MTP 做了哪些适配？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">在 MTP 解码阶段适配 GDN 的 Backend 逻辑。原生实现面向 NVIDIA 硬件，自研硬件的算子输入存在差异，因此需要迁移适配；同时补齐原生实现不支持的 Memory State 存储形式。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如果调整 MTP 参数来提升 token 接受率，可以调哪些参数？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">可以减小 draft step，减少 Draft Model 一次生成的 token 数量，从而提升接受率，但会牺牲部分推测长度。<br>当前主要支持 Eager 模式，一次推测三四个 token。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 如何评估算子是否还有优化空间、是否构成性能短板？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">对比算子理论性能值，参考同等算子在 GPU 上的性能，并结合多代硬件的代际算力差异评估。如果新一代卡理论算力约为旧代两倍，也可以观察实际性能是否体现出相应收益。<br>曾对 Kimi 2.6 做性能分析，抓取算子信息，对比理论性能与实际运行性能，定位性能瓶颈。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: MFU 和理论性能值如何计算？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">硬件团队提供带宽、存储性能等基础参数，工具抓取算子输入输出维度后，结合输出维度、硬件带宽和存储性能等指标计算理论值及 MFU。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: K3 的适配开始了吗？当前性能大概如何？ <span class="tag tag-hard">核心</span></div>
+        <div class="answer">适配工作已经启动，目前性能大约对标 H20 GPU 的 50%。</div>
+      </div>
+      <div class="qa">
+        <div class="question">Q: 你有什么想问面试官的吗？ <span class="tag tag-hr">开放题</span></div>
+        <div class="answer">询问优秀实习生和校招候选人更看重算法能力还是工程能力，以及推理框架深耕和底层算子优化哪个方向更有优势。<br>面试官反馈团队两个方向都有；结合候选人经历，更偏推理框架层，而不是最底层算子优化。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>总结 & 建议</h2>
+    <ul>
+      <li><strong>项目深挖重点</strong>：重点复习混合注意力模型（GDN/KD、MLA）、MTP、Memory State、MOE all-to-all、量化部署和 PD 分离等实际适配问题。</li>
+      <li><strong>并行基础短板</strong>：本轮对 CP、SP、TP 通信流程和横向切分回答不够深入，应补齐 CP/PCP/DCP 的区别、TP 与 SP 配合原因及通信原语。</li>
+      <li><strong>性能分析表达</strong>：需要能清楚说明理论 FLOPS、带宽瓶颈、MFU、硬件代际对比，以及从 profile 到算子优化需求的定位过程。</li>
+      <li><strong>投机解码准备</strong>：掌握 draft step、token 接受率、Eager MTP的关系，并说明接受率与吞吐之间的权衡。</li>
+      <li><strong>面试官风格</strong>：围绕简历项目逐层追问，重点考察真实落地深度、并行策略理解和性能分析能力；对未直接负责的底层模块会继续追问边界。</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>由 <a href="https://github.com/offerseed/interview-experience">offerseed/interview-experience</a> 提供。</p>
+</div>
+
+</body>
+</html>

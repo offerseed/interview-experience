@@ -26,7 +26,7 @@
 
 | 日期 | 岗位 | 轮次 | 链接 |
 | :--- | :--- | :--- | :--- |
-| 2026-06 | WAM 算法工程师 | 一面 | [Momenta WAM 算法面试](./大模型算法/Momenta%20WAM%20%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95.html) |
+| 2026-06 | WAM 算法工程师 | 一面 | [Momenta WAM 算法面试](llm-algo/momenta-wam-algo.html) |
 
 ## Agent开发
 
@@ -73,5 +73,5 @@
 
 ## 面试经验
 
-> 欢迎投稿你的 Momenta 面经！请使用 [面经模板](../../templates/面经模板.md) 提交 PR。
+> 欢迎投稿你的 Momenta 面经！请使用 [面经模板](../../templates/interview-template.md) 提交 PR。
 投稿时请在面经中注明岗位方向，方便归类到对应分类。
