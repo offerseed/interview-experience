@@ -10,8 +10,7 @@
 ## 🤝 贡献面经
 欢迎按模板投稿你的面经，帮助更多同学。
 请阅读 [CONTRIBUTING.md](https://github.com/offerseed/interview-experience/blob/main/CONTRIBUTING.md)，按 `templates/` 里的模板提交 PR 或 Issue。
-或直接添加作者微信：offerseed 更方便你提交
-<img width="820" height="1214" alt="微信图片_20260826175448_870_1100" src="https://github.com/user-attachments/assets/253fcdd5-f029-444f-a0f9-32fcb29ca5c2" />
+或直接添加作者微信：offerseed       更方便你提交面经
 
 ---
 
