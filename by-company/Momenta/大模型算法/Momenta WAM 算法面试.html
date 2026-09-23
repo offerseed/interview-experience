@@ -177,15 +177,15 @@
       <div class="round-title">一面 — WAM 技术面</div>
       <div class="qa">
         <div class="question">Q: 车机多摄像头，如何确保 WAM 训练时候的 Video 的 3D 一致性（摄像头相对位置固定） <span class="tag tag-hard">核心</span></div>
-        <div class="answer">考察多视角几何一致性。摄像头相对位置固定时，需利用外参矩阵将不同视角的特征对齐到统一 3D 坐标系，训练时加入几何一致性约束（如重投影误差、深度一致性）确保跨视角的空间对齐。</div>
+        <div class="answer">（未提供回答记录）</div>
       </div>
       <div class="qa">
         <div class="question">Q: 你觉得 WAM 训练需要什么样的监督（是否一定需要 video 还是其他形式） <span class="tag tag-hard">核心</span></div>
-        <div class="answer">考察对监督信号的理解。WAM 不一定需要 video，可以使用 BEV 序列、点云序列、多视角图像序列等多种形式的时空数据作为监督，关键在于提供 3D 空间的时序演化信息。</div>
+        <div class="answer">（未提供回答记录）</div>
       </div>
       <div class="qa">
         <div class="question">Q: 你觉得 WAM 的 VAE 需要怎么特殊设计吗 <span class="tag tag-hard">核心</span></div>
-        <div class="answer">考察 VAE 架构设计。WAM 的 VAE 需要处理时序 3D 特征，潜在空间需编码空间结构和动态变化，可能需要时序编码器（如 3D-CNN + Transformer）、跨视角特征融合模块，以及针对驾驶场景的特殊正则化设计。</div>
+        <div class="answer">（未提供回答记录）</div>
       </div>
     </div>
   </div>
@@ -193,11 +193,8 @@
   <div class="summary">
     <h2>总结 & 建议</h2>
     <ul>
-      <li>Momenta 的 WAM 方向偏研究型，问题聚焦世界模型训练的核心难题</li>
-      <li>3D 一致性：理解多摄像头几何对齐与跨视角约束机制</li>
-      <li>监督信号：不局限于 video，关注时空数据的通用性</li>
-      <li>VAE 设计：理解时序 3D 特征的潜在空间建模</li>
-    </ul>
+      <li>本面经仅记录面试问题，未提供回答记录</li>
+</ul>
   </div>
 
 </div>
