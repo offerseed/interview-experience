@@ -25,8 +25,8 @@
 
 推荐先看看已有的样板面经，了解最终展示效果：
 
-- [AMD GPU 加速面试](https://offerseed.github.io/interview-experience/by-company/AMD/AI-Infra/AMD-GPU%E5%8A%A0%E9%80%9F%E9%9D%A2%E8%AF%95.html)
-- [阿里巴巴 Agent 开发面试](https://offerseed.github.io/interview-experience/by-company/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4/Agent%E5%BC%80%E5%8F%91/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95.html)
+- [VIVO 搜广推算法 26秋招面经](https://offerseed.github.io/interview-experience/by-company/VIVO/search-ads-rec/vivo-search-ads-rec-26autumn.html)
+- [字节跳动 番茄小说 数据研发 27届秋招面经](https://offerseed.github.io/interview-experience/by-company/bytedance/data/bytedance-tomato-data-27autumn.html)
 
 ---
 

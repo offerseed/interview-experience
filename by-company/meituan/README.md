@@ -28,7 +28,7 @@
 
 | 日期 | 岗位 | 轮次 | 链接 |
 | :--- | :--- | :--- | :--- |
-| 待补充 | — | — | — |
+| 2025-09 | 搜广推算法工程师 | 1轮技术面 | [查看](search-ads-rec/meituan-search-ads-rec-26autumn.html) |
 
 ## Agent开发
 

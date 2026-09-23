@@ -15,7 +15,7 @@
 
 | 公司 | 方向 | 轮次 | 亮点 | 链接 |
 | :--- | :--- | :--- | :--- | :--- |
-| 阿里巴巴 | Agent 架构 | 4轮技术+HR | RAG 优化+系统设计 | [查看](../../by-company/alibaba/agent-dev/) |
+| 阿里巴巴 | Agent 架构 | 4轮技术+HR | RAG 优化+系统设计 | [查看](../../by-company/alibaba/) |
 | 字节跳动 Agentkit | Agent Infra / Agent Runtime（27 秋招） | 技术面（轮次序号未提供） | Agent Loop / Harness / Memory / MCP / Sandbox + MySQL + LRU | [查看](../../by-company/bytedance/agent-dev/bytedance-agentkit-agent-engineer-27autumn.md) |
 
 ## 高频面试问题清单

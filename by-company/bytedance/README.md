@@ -30,6 +30,7 @@
 | :--- | :--- | :--- | :--- |
 | 2026-09 | 多模态内容理解 | 一面 | [查看](llm-algo/bytedance-multimodal-content-27autumn-round1.html) |
 | 2026-09 | 大模型搜索 | 一面 | [查看](llm-algo/bytedance-llm-search-27autumn-round1.html) |
+| 2025-09 | 中国区广告 · 搜广推算法 | 3轮技术面 | [查看](search-ads-rec/bytedance-china-ads-search-ads-rec-26autumn.html) |
 
 ## Agent开发
 

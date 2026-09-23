@@ -18,7 +18,6 @@
 | 字节跳动 | NLP | 一面 | Transformer + 编程题 | [查看](../../by-company/bytedance/) |
 | 腾讯 | 推荐 | 一面 | 召回排序 + 模型 | [查看](../../by-company/tencent/) |
 | 阿里巴巴 | 推荐 | 一面 | CTR预估 + 深度模型 | [查看](../../by-company/alibaba/) |
-| OpenAI | LLM | Technical | 系统设计 + RLHF | [查看](../../by-company/openai/) |
 
 ## 高频面试问题清单
 

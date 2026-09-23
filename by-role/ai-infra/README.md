@@ -15,7 +15,7 @@
 
 | 公司 | 方向 | 轮次 | 亮点 | 链接 |
 | :--- | :--- | :--- | :--- | :--- |
-| AMD | GPU 加速 | 3轮技术+HR | CUDA/ROCm+系统设计 | [查看](../../by-company/AMD/ai-infra/) |
+| AMD | GPU 加速 | 3轮技术+HR | CUDA/ROCm+系统设计 | [查看](../../by-company/AMD/) |
 
 ## 高频面试问题清单
 
